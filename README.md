@@ -1,4 +1,4 @@
-# GCP VM Provisioning with Terraform
+# terraform-gcp-virtual-machine
 
 This Terraform project provisions a Google Cloud Platform (GCP) virtual machine instance.
 
