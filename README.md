@@ -1,6 +1,6 @@
-# terraform-gcp-virtual-machine
+# GCP VM Provisioning with Terraform
 
-This project automates the deployment of a Google Cloud Platform (GCP) virtual machine instance.
+This Terraform project provisions a Google Cloud Platform (GCP) virtual machine instance.
 
 ## Architecture
 
