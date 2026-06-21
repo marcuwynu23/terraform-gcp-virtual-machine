@@ -75,3 +75,23 @@ sequenceDiagram
 
 4.  **Connect**:
     Use the `ssh_connection_command` provided in the output.
+
+---
+
+## Usage as a Module
+
+Reference this repository as a Terraform module in your own configurations:
+
+```hcl
+module "gcp_vm" {
+  source = "github.com/marcuwynu23/terraform-gcp-virtual-machine?ref=main"
+
+  project_id    = var.project_id
+  region        = "us-central1"
+  zone          = "us-central1-a"
+  instance_name = "my-app-vm"
+  ssh_user      = "gcp-user"
+}
+```
+
+All [variables](#variables) and [outputs](#outputs) documented below are available when using this as a module.
