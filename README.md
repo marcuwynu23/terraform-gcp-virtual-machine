@@ -76,8 +76,6 @@ sequenceDiagram
 4.  **Connect**:
     Use the `ssh_connection_command` provided in the output.
 
----
-
 ## Usage as a Module
 
 Reference this repository as a Terraform module in your own configurations:
@@ -93,8 +91,6 @@ module "gcp_vm" {
   ssh_user      = "gcp-user"
 }
 ```
-
----
 
 ## Variables
 
