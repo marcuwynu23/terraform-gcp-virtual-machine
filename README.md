@@ -54,14 +54,14 @@ sequenceDiagram
     # Authenticate
     gcloud auth application-default login
 
-    # Select your project (e.g., gcloud config set project test)
-    gcloud config set project gen-lang-client-xxxxxx
+    # Select your project
+    gcloud config set project your-project-id
     ```
 
 2.  **Configure Variables**:
     Create a `terraform.tfvars` file based on the example:
     ```hcl
-    project_id = "gen-lang-client-xxxxxx"
+    project_id = "your-project-id"
     region     = "us-central1"
     zone       = "us-central1-a"
     ssh_user   = "gcp-user"
@@ -94,4 +94,22 @@ module "gcp_vm" {
 }
 ```
 
-All [variables](#variables) and [outputs](#outputs) documented below are available when using this as a module.
+---
+
+## Variables
+
+| Variable | Description | Type | Default |
+|----------|-------------|------|---------|
+| `project_id` | GCP project ID | `string` | (required) |
+| `region` | GCP region (free tier: us-west1, us-central1, us-east1) | `string` | `"us-central1"` |
+| `zone` | GCP zone | `string` | `"us-central1-a"` |
+| `instance_name` | VM instance name | `string` | `"free-tier-vm"` |
+| `ssh_user` | SSH username | `string` | `"gcp-user"` |
+
+## Outputs
+
+| Output | Description |
+|--------|-------------|
+| `vm_external_ip` | External IP address of the VM |
+| `vm_internal_ip` | Internal IP address of the VM |
+| `ssh_connection_command` | SSH connection command |
