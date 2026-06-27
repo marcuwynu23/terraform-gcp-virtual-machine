@@ -58,7 +58,7 @@ resource "google_compute_instance" "vm_instance" {
   }
 
   metadata = {
-    ssh-keys = "${var.ssh_user}:${file("~/.ssh/id_rsa.pub")}"
+    ssh-keys = "${var.ssh_user}:${var.ssh_public_key}"
   }
 
   # Optional: metadata_startup_script can be added here
