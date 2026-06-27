@@ -26,3 +26,8 @@ variable "ssh_user" {
   type        = string
   default     = "gcp-user"
 }
+
+variable "ssh_public_key" {
+  description = "The SSH public key content (e.g., ssh-rsa AAA...)"
+  type        = string
+}
