@@ -80,17 +80,32 @@ sequenceDiagram
 
 Reference this repository as a Terraform module in your own configurations:
 
-```hcl
-module "gcp_vm" {
-  source = "github.com/marcuwynu23/terraform-gcp-virtual-machine?ref=main"
-
-  project_id    = var.project_id
-  region        = "us-central1"
-  zone          = "us-central1-a"
-  instance_name = "my-app-vm"
-  ssh_user      = "gcp-user"
-}
-```
+> **Option 1**: Terraform Registry (recommended)
+> ```hcl
+> module "virtual-machine" {
+>   source  = "marcuwynu23/virtual-machine/gcp"
+>   version = "1.0.0"
+>
+>   project_id    = var.project_id
+>   region        = "us-central1"
+>   zone          = "us-central1-a"
+>   instance_name = "my-app-vm"
+>   ssh_user      = "gcp-user"
+> }
+> ```
+>
+> **Option 2**: GitHub source
+> ```hcl
+> module "virtual-machine" {
+>   source = "github.com/marcuwynu23/terraform-gcp-virtual-machine?ref=main"
+>
+>   project_id    = var.project_id
+>   region        = "us-central1"
+>   zone          = "us-central1-a"
+>   instance_name = "my-app-vm"
+>   ssh_user      = "gcp-user"
+> }
+> ```
 
 ## Variables
 
