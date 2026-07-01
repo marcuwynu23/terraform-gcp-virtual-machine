@@ -31,3 +31,30 @@ variable "ssh_public_key" {
   description = "The SSH public key content (e.g., ssh-rsa AAA...)"
   type        = string
 }
+variable "firewall_rules" {
+  description = "List of firewall rules to create"
+  type = list(object({
+    name          = string
+    direction     = string
+    priority      = number
+    source_ranges = list(string)
+    allowed = list(object({
+      protocol = string
+      ports    = list(string)
+    }))
+  }))
+  default = [
+    {
+      name          = "allow-ssh"
+      direction     = "INGRESS"
+      priority      = 1000
+      source_ranges = ["0.0.0.0/0"]
+      allowed = [
+        {
+          protocol = "tcp"
+          ports    = ["22"]
+        }
+      ]
+    }
+  ]
+}
