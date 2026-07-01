@@ -19,17 +19,28 @@ resource "google_compute_subnetwork" "subnet" {
 }
 
 # Allow SSH traffic
-resource "google_compute_firewall" "allow_ssh" {
-  name    = "allow-ssh"
-  network = google_compute_network.vpc_network.name
-
-  allow {
-    protocol = "tcp"
-    ports    = ["22"]
+resource "google_compute_firewall" "firewall_rules" {
+  for_each = {
+    for rule in var.firewall_rules : rule.name => rule
   }
 
-  source_ranges = ["0.0.0.0/0"]
-  target_tags   = ["ssh-enabled"]
+  name      = each.value.name
+  network   = google_compute_network.vpc_network.name
+  direction = each.value.direction
+  priority  = each.value.priority
+
+  source_ranges = each.value.source_ranges
+
+  dynamic "allow" {
+    for_each = each.value.allowed
+
+    content {
+      protocol = allow.value.protocol
+      ports    = allow.value.ports
+    }
+  }
+
+  target_tags = ["ssh-enabled"]
 }
 
 # Create the VM instance (Free Tier eligible)
